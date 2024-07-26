@@ -1,10 +1,14 @@
 package com.projeto.quadrodenotas.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto.quadrodenotas.dtos.AnnotacionDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.Instant;
+import java.util.Date;
 
 @Entity(name = "annotacion")
 @Table(name = "annotacion")
@@ -23,6 +27,13 @@ public class AnnotacionModel implements Serializable {
 
     private String content;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date instant;
+
+    public AnnotacionModel(AnnotacionDTO annotacionDTO) {
+        this.title = annotacionDTO.title();
+        this.content = annotacionDTO.content();
+        this.instant = Date.from(Instant.now());
+    }
 
 }
