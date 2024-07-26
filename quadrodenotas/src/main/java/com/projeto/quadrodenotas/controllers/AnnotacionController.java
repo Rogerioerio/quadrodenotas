@@ -28,11 +28,10 @@ public class AnnotacionController {
     }
 
     @GetMapping("/quadrodenotas/{name}")
-    public ResponseEntity<List<AnnotacionModel>> getAnnotacionByName(@PathVariable(value = "name") String name) {
-        List<AnnotacionModel> annotList = annotRepository.findAll();
-        List<AnnotacionModel> filteredAnnotList = ;
+    public ResponseEntity<List<AnnotacionModel>> getAnnotacionByTitle(@PathVariable(value = "name") String title) {
+        List<AnnotacionModel> annotList = annotRepository.findByTitleIsLike(title);
 
-        return ResponseEntity.status(HttpStatus.OK).body();
+        return ResponseEntity.status(HttpStatus.OK).body(annotList);
     }
 
     @PostMapping("/quadrodenotas")
