@@ -23,8 +23,10 @@ public class AnnotacionModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long annot_id;
 
+    @Setter
     private String title;
 
+    @Setter
     private String content;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
